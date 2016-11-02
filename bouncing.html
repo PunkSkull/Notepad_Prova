@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var textToShow;
+			var x;
+			var y;
+			var xdir;
+			var ydir;
+			
+			var rad;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, rad, 0, 2*Math.PI);
+				context.fillStyle = "violet";
+				context.fill();
+				
+				if (x >= 500) {				
+					xdir = xdir * -1;
+				}
+				
+				if (x <= 0) {
+					xdir = xdir * -1;
+				}
+				
+				if (y >= 500) {
+					ydir = ydir * -1;
+				}
+				
+				if (y <= 0) {
+					ydir = ydir * -1;
+				}
+				
+				x = x + xdir;
+				y = y + ydir;
+								
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				textToShow = "Argh!";
+				
+				x = Math.floor (Math.random() * 100);
+				y = Math.floor (Math.random() * 100);
+				rad = Math.floor (Math.random() * 6);
+				rad = rad + 20;
+
+				xdir = Math.floor (Math.random() * 30);
+				ydir = Math.floor (Math.random() * 30);
+				
+				xdir = xdir + 1;
+				ydir += 1;
+				
+				
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

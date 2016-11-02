@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var img;
+			var x;
+			var y;
+			var wid;
+			var ht;
+			var img2;
+			var x2;
+			var y2;
+			var wid2;
+			var ht2;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+			
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				for (counter = 0; counter < 7; counter ++) {
+					for (counter2 = 0; counter2 < 7; counter2 ++) {	
+					
+						if (counter % 2 == 0) {
+							context.drawImage (img,x,y,wid,ht);
+						}
+					
+						else {
+							context.drawImage (img2,x2,y2,wid2,ht2);
+						}
+				}
+				
+				requestAnimationFrame (animateMe);
+			}
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				x = 10;
+				y = 10;
+				wid = 150;
+				ht = 150;
+				
+				img = new Image ();
+				img.src="diamond.jpg";
+				
+				x2 = 170;
+				y2 = 10;
+				wid2 = 150;
+				ht2 = 150;
+				
+				img2 = new Image ();
+				img2.src="blackrose.jpg";
+				
+				
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

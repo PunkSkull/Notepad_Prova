@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var textToShow;
+			var textToShow2;
+			var textToShow3;
+			var textToShow4;
+			var textToShow5;
+			var textToShow6;
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.rect(35,213,50,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "red";
+				context.fillText(textToShow2,50,250);
+				
+				context.beginPath();
+				context.rect(135,213,50,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "orange";
+				context.fillText(textToShow,150,250);
+				
+				context.beginPath();
+				context.rect(235,213,50,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "yellow";
+				context.fillText(textToShow3,250,250);
+				
+				context.beginPath();
+				context.rect(335,213,50,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "green";
+				context.fillText(textToShow4,350,250);
+				
+				context.beginPath();
+				context.rect(435,213,50,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "blue";
+				context.fillText(textToShow5,450,250);
+				
+				context.beginPath();
+				context.rect(220,410,100,50);
+				context.stroke();
+				context.font= "40px Comic Sam";
+				context.fillStyle = "purple";
+				context.fillText(textToShow6,250,450);
+				
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				textToShow = Math.floor (Math.random() * 7);
+				
+				textToShow2 = Math.floor (Math.random() * 7);
+				
+				textToShow3 = Math.floor (Math.random() * 7);
+				
+				textToShow4 = Math.floor (Math.random() * 7);
+				
+				textToShow5 = Math.floor (Math.random() * 7);
+				
+				textToShow6 = textToShow + textToShow2 + textToShow3 + textToShow4 + textToShow5;
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

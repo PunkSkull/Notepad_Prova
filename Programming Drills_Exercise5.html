@@ -1,0 +1,149 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var textToShow;
+			var x;
+			var y;
+			var xdir;
+			var ydir;			
+			var rad;
+			var counter;
+			var col;
+			var x2;
+			var y2;
+			var rad2;
+			var col2;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				var dist; 
+				var ax;
+				var	ay;
+				var rsum;
+			
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, rad, 0, 2*Math.PI);
+				context.fillStyle = col;
+				context.fill();
+
+												
+				if (x + rad >= canvas.width) {
+					xdir = xdir * -1;
+					counter += 1;		
+				}
+				
+				if (x - rad <= 0) {
+					xdir = xdir * -1;
+					counter += 1;		
+				}
+				
+				if (y + rad >= canvas.height) {
+					ydir = ydir * -1;
+					counter += 1;		
+				}
+				
+				if (y - rad <= 0) {
+					ydir = ydir * -1;
+					counter += 1;		
+				}				
+				x = x + xdir;
+				y = y + ydir;
+				
+							
+				ax = x2 - x;
+				ay = y2 - y;
+				
+				dist = Math.floor (Math.sqrt (Math.pow (ax, 2) + Math.pow (ay, 2)));
+				
+				rsum = rad + rad2;
+				
+				if (dist < rsum) {
+					
+					xdir = xdir * -1;
+					ydir = ydir * -1;
+
+				}
+				
+				context.beginPath();
+				context.arc(x2, y2, rad2, 0, 2*Math.PI);
+				context.fillStyle = col2;
+				context.fill();
+
+				
+								
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				textToShow = "Argh!";
+				
+				x = Math.floor (Math.random() * 100);
+				y = Math.floor (Math.random() * 100);
+				rad = 20
+
+				xdir = Math.floor (Math.random() * 8);
+				ydir = Math.floor (Math.random() * 8);
+				
+				xdir = xdir + 5;
+				ydir += 5;
+
+				counter = 0;
+				
+				col = "black";
+				
+				x2 = 250;
+				y2 = 250;
+				rad2 = 20
+				col2 = "purple";
+				
+				animateMe();
+				
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

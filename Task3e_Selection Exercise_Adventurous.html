@@ -1,0 +1,269 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var x;
+			var y;
+			var xdir;
+			var ydir;
+			var rad;
+			var counter;
+			var col;
+			var speed;
+			var sdir;
+			var rdir;
+			var sound
+			var x2;
+			var y2;
+			var xdir2;
+			var ydir2;
+			var rad2;
+			var counter2;
+			var col2;
+			var speed2;
+			var sdir2;
+			var rdir2;
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, rad, 0, 2*Math.PI);
+				context.fillStyle = col;
+				context.fill();
+									
+				console.log ("Counter is" + counter);
+				
+				if (rad >= 150) {
+					rdir = -1;
+				}
+				
+				if (rad <= 5) {
+					rdir = 1;
+				}
+				rad = rad + rdir;
+				
+				if (counter == 10) {
+					col = "green";				
+				}
+				else if (counter == 20) {
+					col = "grey";
+				}
+				
+				else if (counter == 30) {
+					col = "red";
+				}
+				
+				else if (counter == 40) {
+					col = "orange";
+				}
+				
+				else if (counter == 50) {
+					col = "purple";
+					counter = 0;
+				}
+				
+												
+				if (speed < 0){
+					speed = 0;
+				}
+				
+				if (x + rad >= 500) {	
+					xdir = Math.floor (Math.random() * 10);
+					xdir = xdir * -1;
+					counter +=1;
+					speed += sdir;
+					xdir = xdir - speed;
+				}
+				
+				if (x - rad <= 0) {
+					xdir = Math.floor (Math.random() * 10);
+					counter +=1
+					speed += sdir;
+					xdir = xdir + speed;
+				}
+				
+				if (y + rad >= 500) {
+					ydir = Math.floor (Math.random() * 10);
+					ydir = ydir * -1;
+					counter +=1
+					speed += sdir;
+					ydir = ydir - speed;
+				}
+				
+				if (y - rad <= 0) {
+					ydir = Math.floor (Math.random() * 10);
+					counter +=1
+					speed += sdir;
+					ydir = ydir + speed;
+				}
+				
+				x = x + xdir;
+				y = y + ydir;
+				
+				sound = new Audio ("path_to_sound.extension");
+				sound.play();
+
+				
+				context.beginPath();
+				context.arc(x2, y2, rad2, 0, 2*Math.PI);
+				context.fillStyle = col2;
+				context.fill();
+				
+				if (rad2 >= 150) {
+					rdir2 = -1;
+				}
+				
+				if (rad2 <= 5) {
+					rdir2 = 1;
+				}
+				rad2 = rad2 + rdir2;
+				
+				if (counter2 == 10) {
+					col2 = "grey";				
+				}
+				else if (counter2 == 20) {
+					col2 = "red";
+				}
+				
+				else if (counter2 == 30) {
+					col2 = "blue";
+				}
+				
+				else if (counter2 == 40) {
+					col2 = "pink";
+				}
+				
+				else if (counter2 == 50) {
+					col2 = "orange";
+					counter2 = 0;
+				}
+				
+												
+				if (speed2 < 0){
+					speed2 = 0;
+				}
+				
+				if (x2 + rad2 >= 500) {	
+					xdir2 = Math.floor (Math.random() * 10);
+					xdir2 = xdir2 * -1;
+					counter2 +=1;
+					speed2 += sdir2;
+					xdir2 = xdir2 - speed2;
+				}
+				
+				if (x2 - rad2 <= 0) {
+					xdir2 = Math.floor (Math.random() * 10);
+					counter2 +=1
+					speed2 += sdir2;
+					xdir2 = xdir2 + speed2;
+				}
+				
+				if (y2 + rad2 >= 500) {
+					ydir2 = Math.floor (Math.random() * 10);
+					ydir2 = ydir2 * -1;
+					counter2 +=1
+					speed2 += sdir2;
+					ydir2 = ydir2 - speed2;
+				}
+				
+				if (y2 - rad2 <= 0) {
+					ydir2 = Math.floor (Math.random() * 10);
+					counter2 +=1
+					speed2 += sdir2;
+					ydir2 = ydir2 + speed2;
+				}
+				
+				x2 = x2 + xdir2;
+				y2 = y2 + ydir2;
+								
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+			
+								
+				x = Math.floor (Math.random() * 100);
+				y = Math.floor (Math.random() * 100);
+				rad = Math.floor (Math.random() * 6);
+				rad = rad + 10;
+
+				xdir = Math.floor (Math.random() * 10);
+				ydir = Math.floor (Math.random() * 10);
+				
+				xdir  = xdir + 5;
+				ydir += 5;
+				
+				col = "black";
+				
+				counter = 0;
+				speed = 21;
+				sdir = 0;
+				rdir = 1;
+				
+				x2 = Math.floor (Math.random() * 100);
+				y2 = Math.floor (Math.random() * 100);
+				rad2 = Math.floor (Math.random() * 6);
+				rad2 = rad2 + 10;
+
+				xdir2 = Math.floor (Math.random() * 10);
+				ydir2 = Math.floor (Math.random() * 10);
+				
+				xdir2  = xdir2 + 5;
+				ydir2 += 5;
+				
+				col2 = "yellow";
+				
+				counter2 = 0;
+				speed2 = 21;
+				sdir2 = 0;
+				rdir2 = 1;
+				
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+</html>		

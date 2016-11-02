@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var textToShow;
+
+			var x;
+			var y;
+			var rad;
+			var col;
+			var ydir;
+			var offset;
+			
+			
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				var counter;
+				var counter2;
+				
+				context.clearRect (0, 0, canvas.width, canvas.height);
+
+				x = 10;
+				y = 10;
+				rad = 10;
+				col = "blue";
+
+
+				// Initialisation- very first thing, only once
+				// Continuation
+				// Upkeep
+		
+				for (counter = 0; counter < 8; counter++) {
+					for (counter2 = 0;  counter2 < 8 ; counter2++) {
+
+						if ((counter2 + counter) % 2 == 0) {
+							context.fillStyle = "white";
+						}
+						else {
+							context.fillStyle = "black";
+					
+						}
+						context.fillRect (x, y, 49, 49);
+						
+						
+						x = x + 50;		
+						
+					}
+					
+					y += 50;
+					x = 10;
+
+				}
+				
+			
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				textToShow = "Argh!";
+				
+				x = 50;
+				y = 50;
+				rad = 10;
+				col = "blue";
+				ydir = 1;
+				offset = 0;
+		
+				animateMe();
+				
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

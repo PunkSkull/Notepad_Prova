@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var x;
+			var y;
+			var rad;
+			var col;
+			var ydir;
+			var offset;
+			var loop;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				var counter;
+				var counter2;
+				
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				x = 0;
+				y = 0;
+				width = 50;
+				height = 20;
+				col = "black";
+
+				for (counter = 0; counter <500; counter ++) {
+					for (counter2 = 0; counter2 <500; counter2 ++) {
+						context.beginPath();
+						
+						if ((counter2 + counter + offset) % 3 == 0){
+							context.fillStyle = "black";
+						}
+						
+						else if ((counter2 + counter + offset) % 3 == 1){
+							context.fillStyle = "white";
+						}
+						
+						else {
+							context.fillStyle = "gray";
+						}
+						context.fillRect(x, y, width, height);
+												
+						x = x + 3;	
+						
+					}
+					
+					y += 3;
+					x = 0;
+					
+				}
+				
+				loop += 10;
+				
+				if (loop % 6 == 0) {
+					offset += 10;
+				}
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+										
+				animateMe();
+				
+				x = 0;
+				y = 0;
+				width = 50;
+				height = 20;
+				col = "black";
+				ydir = 1;
+				offset = 0;
+				loop = 0;
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

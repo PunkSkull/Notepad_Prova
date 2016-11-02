@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var rand;
+			var randx;
+			var randy;
+			var xdir;
+			var ydir;
+
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+			
+				var tmp;
+				
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(randx, randy, rand, 0, 2*Math.PI);
+				context.fillStyle = col;
+				context.fill();
+				
+				randx = randx + xdir;
+				randy = randy + ydir;
+				
+				tmp = col;
+				col = col2;
+				col2 = col3;
+				col3 = col4;
+				col4 = tmp;
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				randx= Math.floor (Math.random() * 500);
+				randy= Math.floor (Math.random() * 500);
+				rand = Math.floor (Math.random() * 30);
+				rand = rand + 2;
+				
+				xdir= Math.floor (Math.random() * 2);
+				ydir= Math.floor (Math.random() * 2);
+				
+				xdir + 1;
+				ydir + 1;
+				
+				col = "blue";
+				col2 = "red";
+				col3 = "orange";
+				col4 = "purple";
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

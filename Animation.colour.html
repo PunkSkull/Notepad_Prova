@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var x;
+			var y;
+			var xdir;
+			var ydir;
+			var col1;
+			var col2;
+			var col3;
+			var col4;
+			var rad;
+			var counter;
+			var colourcounter;
+			
+			
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				var tmp;
+				var colsel;
+			
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, rad, 0, 2*Math.PI);
+				context.fillStyle = col1;
+				context.fill();
+							
+				counter += 1;
+							
+				if(counter % 60 == 0){
+					colourcounter +=1;
+					
+					if (colourcounter == 1) {
+						col1 = "pink";
+					}
+					else if (colourcounter == 2) {
+						col1 = "red";
+					}
+					else if (colourcounter == 3) {
+						col1 = "orange";
+					}
+					else if (colourcounter == 4) {
+						col1 = "yellow";
+					}
+					else if (colourcounter == 5) {
+						col1 = "green";
+					}
+					else {
+						col1 = "purple";
+						colourcounter = 0;
+					}
+					
+				}
+				
+				console.log ("Counter is" + counter);
+								
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+								
+				x = Math.floor (Math.random() * 100);
+				y = Math.floor (Math.random() * 100);
+				rad = Math.floor (Math.random() * 6);
+				rad = rad + 20;
+
+				xdir = Math.floor (Math.random() * 2);
+				ydir = Math.floor (Math.random() * 2);
+				
+				xdir + 1;
+				ydir + 1;
+				
+				col1 = "purple";
+				
+				counter = 0;
+				colourcounter = 0;
+				
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		

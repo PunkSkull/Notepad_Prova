@@ -1,0 +1,85 @@
+
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var x;
+			var y;
+			var x2;
+			var y2;
+			var img;
+			var img2;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				context.drawImage(img, x, y, 210, 220);
+				context.drawImage(img2, x2, y2, 200, 190);
+				
+				x = x + 1
+				y = y + 1
+				x2 = x2 - 1
+				y2 = y2 - 1
+				
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				img = new Image ();
+				img.src = "MadRose.jpg"
+				x = 280;
+				y = 10;
+				img2 = new Image ();
+				img2.src = "blackrose.jpg"
+				x2 = 10;
+				y2 = 300;
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

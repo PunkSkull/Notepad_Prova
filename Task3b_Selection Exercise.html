@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var textToShow;
+			var x;
+			var y;
+			var xdir;
+			var ydir;
+			var rad;
+			var counter;
+			var col;
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, rad, 0, 2*Math.PI);
+				context.fillStyle = col;
+				context.fill();
+				
+				console.log ("Counter is" + counter);
+				
+				if (counter == 10) {
+					col = "green";				
+				}
+				else if (counter == 20) {
+					col = "grey";
+				}
+				
+				else if (counter == 30) {
+					col = "red";
+				}
+				
+				else if (counter == 40) {
+					col = "orange";
+				}
+				
+				else if (counter == 50) {
+					col = "purple";
+					counter = 0;
+				}
+				
+				
+				if (x + rad >= canvas.width) {	
+					xdir = Math.floor (Math.random() * 10);
+					xdir = xdir * -1;
+					counter +=1;
+				}
+				
+				if (x - rad <= 0) {
+					xdir = Math.floor (Math.random() * 10);
+					counter +=1
+				}
+				
+				if (y + rad >= canvas.height) {
+					ydir = Math.floor (Math.random() * 10);
+					ydir = ydir * -1;
+					counter +=1
+				}
+				
+				if (y - rad <= 0) {
+					ydir = Math.floor (Math.random() * 10);
+					counter +=1
+				}
+				
+				x = x + xdir;
+				y = y + ydir;
+				
+								
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+								
+				x = Math.floor (Math.random() * 100);
+				y = Math.floor (Math.random() * 100);
+				rad = Math.floor (Math.random() * 6);
+				rad = rad + 10;
+
+				xdir = Math.floor (Math.random() * 10);
+				ydir = Math.floor (Math.random() * 10);
+				
+				xdir  = xdir + 5;
+				ydir += 5;
+				
+				col = "black";
+				
+				counter = 0;
+				
+				
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+</html>		

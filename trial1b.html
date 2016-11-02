@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+			
+				
+				
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.arc(x, y, size1, 0, 2*Math.PI);
+				context.fillStyle = "purple";
+				context.fill();
+				
+				context.beginPath();
+				context.arc(x, y, size2, 0, 2*Math.PI);
+				context.fillStyle = "orange";
+				context.fill();
+				
+				context.beginPath();
+				context.arc(x, y, size3, 0, 2*Math.PI);
+				context.fillStyle = "red";
+				context.fill();
+				
+				
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				x= 250;
+				y= 250;
+				
+				size1 = 
+				size2 = 
+				size3 = 
+				
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

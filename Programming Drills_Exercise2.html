@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var rect;
+			
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				
+				context.beginPath();
+				context.rect(140,160,210,250);
+				context.stroke();
+				
+				context.beginPath();
+				context.moveTo(40,90);
+				context.lineTo(140,160);
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(27, 80, 16, 0, 2*Math.PI);
+				context.strokeStyle="black";
+				context.stroke();
+				
+				context.beginPath();
+				context.moveTo(450,90);
+				context.lineTo(350,160);
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(462, 80, 16, 0, 2*Math.PI);
+				context.strokeStyle="black";
+				context.stroke();
+				
+				context.beginPath();
+				context.rect(165,185,35,60);
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(183, 215, 17, 0, 2*Math.PI);
+				context.fillStyle="black";
+				context.fill();
+				
+				context.beginPath();
+				context.rect(288,185,35,60);
+				context.stroke();
+				
+				context.beginPath();
+				context.arc(306, 215, 17, 0, 2*Math.PI);
+				context.fillStyle="black";
+				context.fill();
+				
+				context.beginPath();
+				context.rect(175,310,35,60);
+				context.stroke();
+				
+				context.beginPath();
+				context.rect(210,310,35,60);
+				context.stroke();
+				
+				context.beginPath();
+				context.rect(245,310,35,60);
+				context.stroke();
+				
+				context.beginPath();
+				context.rect(280,310,35,60);
+				context.stroke();
+				
+				
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				 
+				
+				
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>

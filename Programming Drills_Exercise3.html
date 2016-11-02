@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>Javascript Game</title>
+	</head>
+	<body>
+		
+		
+		<canvas 
+			style="border:1px solid #000000;" 
+			id = "mycanvas" 
+			width = "500" 
+			height = "500">
+			
+			Your browser does not support canvas
+		</canvas>
+
+		<script>
+		
+		window.addEventListener("load", myApp, false);
+
+
+		function myApp() {
+			var canvas;
+			var context;
+			var rect;
+			var x;
+			var y;
+			var wid;
+			var ht;
+			var img;
+			var x2;
+			var y2;
+			var wid2;
+			var ht2;
+			var img2;
+			var x2dir;
+			var y2dir;
+		
+			function getCanvas() {
+				var tmp;
+				
+				tmp = document.getElementById ("mycanvas");
+				
+				if (tmp == null) {
+					alert ("no canvas");
+				}
+				
+				return tmp;
+					
+			}
+
+			function animateMe() {
+				context.clearRect (0, 0, canvas.width, canvas.height);
+				context.rect(0,0,500,500);
+				context.fillStyle = "black";
+				context.fill();
+				
+				context.drawImage(img, x, y, wid,ht);
+				
+				context.drawImage(img2, x2, y2, wid2,ht2);
+				
+				if (x2 >= 500) {				
+					x2dir = x2dir * -1;
+				}
+				
+				if (x2 <= 0) {
+					x2dir = x2dir * -1;
+				}
+				
+				if (y2 >= 500) {
+					y2dir = y2dir * -1;
+				}
+				
+				if (y2 <= 0) {
+					y2dir = y2dir * -1;
+				}
+				
+				x2 = x2 + x2dir;
+				y2 = y2 + y2dir;
+				
+
+				requestAnimationFrame (animateMe);
+			}
+
+			canvas = getCanvas();	
+			context = canvas.getContext ("2d");
+			
+			init();
+			
+			function init() {
+				
+				x = 40;
+				y = 50;
+				wid = 540;
+				ht = 340;
+				
+				img = new Image ();
+				img.src = "Moon.jpg";
+				
+				x2 = 440;
+				y2 = 240;
+				wid2 = 179;
+				ht2 = 125;
+				
+				img2 = new Image ();
+				img2.src = "cloud.jpg";
+				
+				x2dir = 1
+				y2dir = 1
+				
+				x2dir = x2dir + 1;
+				y2dir += 1;
+							
+				animateMe();
+			}			
+
+		}
+				
+		</script>
+		
+	</body>
+		
+</html>
